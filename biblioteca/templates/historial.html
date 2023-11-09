@@ -108,9 +108,6 @@
     <header class="bg-success text-white text-center py-5">
       <h1 class="display-4">🏋️‍♀️🏋️🏋️‍♂️ GYMFLOW 🏋️‍♀️🏋️🏋️‍♂️</h1>
       <p class="lead">Ejercicios en casa y en el parque</p>
-
-      <a href="{% url 'home_historial' %}" class="btn btn-lg btn-dark">IR A HISTORIAL</a>
-      <a href="{% url 'home_llamada' %}" class="btn btn-lg btn-dark">IR A LLAMADA</a>
   </header>
 
 
@@ -129,10 +126,6 @@
                   <h6 class="card-title">{{ maquina.nombre }}</h6>
                   {% comment %} <p class="card-text">{{ libro.descripcion }}</p> {% endcomment %}
                   {% comment %} <p class="card-text">Stock: {{ libro.stock }}</p> {% endcomment %}
-                </div>
-                <div class="d-grid p-2">
-                  {% comment %} <a href="{% url 'ver_libro' %}" class="btn btn-sm btn-outline-secondary">Ver libro</a> {% endcomment %}
-                  <a href="{% url 'home_maquina' maquina.id %}" class="btn btn-sm btn-outline-secondary">VER</a>
                 </div>
               </div>
             </div>

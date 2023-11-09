@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from ..models import Libro, Pedido, UserProfile, Categoria
+from ..models import Libro, Pedido, UserProfile, Categoria, Maquina
 from django.contrib.auth.models import User
 
 # RANDOM DATA
@@ -30,6 +30,7 @@ def data(request):
     Categoria.objects.all().delete()
     Libro.objects.all().delete()
     Pedido.objects.all().delete()
+    Maquina.objects.all().delete()
 
     # crea 2 usuarios
     user = get_user_model().objects.create_user(
@@ -123,5 +124,37 @@ def data(request):
             cliente=cliente_pedido,
             estado=estado_pedido,
         )
+
+    maquinas_de_ejercicio = [
+      {"nombre": "Cinta de correr", "descripcion": "Simula correr o caminar en un lugar."},
+      {"nombre": "Bicicleta estática", "descripcion": "Permite ejercicio cardiovascular pedaleando en su lugar."},
+      {"nombre": "Elíptica", "descripcion": "Combina caminar, correr y escalada para un entrenamiento de bajo impacto."},
+      {"nombre": "Máquina de remo", "descripcion": "Simula el movimiento de remar, proporcionando ejercicio cardiovascular y de resistencia."},
+      {"nombre": "Máquina de escalada", "descripcion": "Reproduce el movimiento de subir escaleras, tonificando piernas y glúteos."},
+      {"nombre": "Máquina de prensa de piernas", "descripcion": "Utilizada para fortalecer las piernas."},
+      {"nombre": "Máquina de press de banca", "descripcion": "Trabaja los músculos del pecho y los tríceps."},
+      {"nombre": "Máquina de abdominales", "descripcion": "Diseñada para ejercitar y fortalecer los músculos abdominales."},
+      {"nombre": "Máquina de polea alta", "descripcion": "Ideal para ejercitar los músculos de la espalda y los hombros."},
+      {"nombre": "Máquina de polea baja", "descripcion": "Enfocada en trabajar los músculos de la parte baja del cuerpo."},
+      {"nombre": "Máquina de sentadillas", "descripcion": "Ayuda a desarrollar fuerza en piernas y glúteos."},
+      {"nombre": "Máquina de bíceps", "descripcion": "Dirigida al fortalecimiento de los músculos del brazo."},
+      {"nombre": "Máquina de tríceps", "descripcion": "Enfocada en trabajar los músculos tríceps en los brazos."},
+      {"nombre": "Máquina de aductores", "descripcion": "Trabaja los músculos de la parte interna de los muslos."},
+      {"nombre": "Máquina de abductores", "descripcion": "Enfocada en los músculos de la parte externa de los muslos."},
+      {"nombre": "Máquina Smith", "descripcion": "Una barra guiada para levantamiento de pesas con seguridad."},
+      {"nombre": "Máquina de hombros", "descripcion": "Diseñada para trabajar los músculos del hombro."},
+      {"nombre": "Máquina de glúteos", "descripcion": "Enfocada en tonificar y fortalecer los músculos de los glúteos."},
+      {"nombre": "Máquina de flexiones de piernas", "descripcion": "Permite realizar flexiones de piernas para fortalecer cuádriceps."},
+      {"nombre": "Máquina de pulldown", "descripcion": "Trabaja los músculos de la espalda y los brazos."},
+      ]
+
+
+    for maquina in maquinas_de_ejercicio:
+      Maquina.objects.create(
+          nombre=maquina['nombre'],
+          descripcion=maquina['descripcion'],
+          imagen= 'img/maquina/' + str(random.randint(1, 10)) + '.jpg',
+          codigo=fake.unique.random_number()
+      )
 
     return redirect('index')
